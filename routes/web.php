@@ -11,6 +11,10 @@
 |
 */
 
+
+Route::group(['middleware' => 'checkConfirm'], function () {
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,3 +22,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/register/confirm/{confirmToken}','Auth\RegisterController@confirmRegistration')->name('register.confirm');
+});
